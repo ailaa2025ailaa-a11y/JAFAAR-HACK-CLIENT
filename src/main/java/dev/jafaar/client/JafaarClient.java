@@ -11,6 +11,7 @@ import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.Identifier;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.logging.Logger;
 
@@ -35,7 +36,7 @@ public final class JafaarClient implements ClientModInitializer {
         clickGuiKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.jafaarclient.click_gui",
                 InputConstants.Type.KEYSYM,
-                InputConstants.KEY_RIGHT_SHIFT,
+                GLFW.GLFW_KEY_RIGHT_SHIFT,
                 category
         ));
 
