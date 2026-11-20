@@ -14,7 +14,9 @@ public final class ModuleManager {
     }
     public void registerDefaults() {
         register(new ClientModule("fps_hud", "FPS Counter", ModuleCategory.HUD, true));
+        register(new ClientModule("memory_hud", "Memory Monitor", ModuleCategory.HUD, false));
         register(new ClientModule("coordinates_hud", "Coordinates HUD", ModuleCategory.HUD, true));
+        register(new ClientModule("direction_hud", "Direction HUD", ModuleCategory.HUD, false));
         register(new ClientModule("keystrokes_hud", "Keystrokes HUD", ModuleCategory.HUD, false));
     }
     public Optional<ClientModule> get(String id) { return Optional.ofNullable(modules.get(id)); }
