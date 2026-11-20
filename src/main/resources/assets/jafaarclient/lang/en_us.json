@@ -1,4 +1,5 @@
 {
   "key.category.jafaarclient.main": "JAFAAR CLIENT",
-  "key.jafaarclient.click_gui": "Open ClickGUI"
+  "key.jafaarclient.click_gui": "Open ClickGUI",
+  "key.jafaarclient.custom_menu": "Open custom menu"
 }
