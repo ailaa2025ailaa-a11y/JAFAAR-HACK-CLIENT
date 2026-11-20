@@ -50,11 +50,11 @@ public final class JafaarClickScreen extends Screen {
 
     @Override
     public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
-        super.extractRenderState(graphics, mouseX, mouseY, delta);
         int left = (this.width - PANEL_WIDTH) / 2;
         int top = Math.max(54, (this.height - 190) / 2);
         graphics.fill(left, top - 35, left + PANEL_WIDTH, top + 5 * 27 + 34, 0xE51A1D27);
         graphics.outline(left, top - 35, PANEL_WIDTH, 5 * 27 + 69, 0xFFB58A32);
+        super.extractRenderState(graphics, mouseX, mouseY, delta);
         graphics.centeredText(this.font, Component.literal("JAFAAR CLIENT"), this.width / 2, top - 27, 0xFFFFD36A);
         graphics.centeredText(this.font, Component.literal("Right Shift: open menu  |  Click a module to toggle"),
                 this.width / 2, top + 5 * 27 + 17, 0xFFBFC6D4);
