@@ -72,11 +72,20 @@ public final class ClientHud {
                         int maxHealth = Math.max(1, Math.round(client.player.getMaxHealth()));
                         int food = client.player.getFoodData().getFoodLevel();
                         panel(graphics, 8, 121, 150, 23);
-                        graphics.text(client.font, Component.literal("HP  " + health + "/" + maxHealth + "    FOOD  " + food),
+                        int armor = client.player.getArmorValue();
+                        graphics.text(client.font, Component.literal("HP  " + health + "/" + maxHealth + "   FOOD  " + food + "   ARMOR  " + armor),
                                 15, 129, health <= 6 ? 0xFFFF7777 : 0xFFFFFFFF, true);
                     }
+                    if (enabled("movement_status_hud")) {
+                        String status = client.player.isSprinting() ? "SPRINT" :
+                                client.player.isSwimming() ? "SWIM" :
+                                client.player.isCrouching() ? "SNEAK" : "NORMAL";
+                        panel(graphics, 8, 175, 120, 23);
+                        graphics.text(client.font, Component.literal("STATUS  " + status),
+                                15, 183, 0xFFFFFFFF, true);
+                    }
                     if (enabled("world_clock_hud") && client.level != null) {
-                        long ticks = Math.floorMod(client.level.getDayTime(), 24000L);
+                        long ticks = Math.floorMod(client.level.getOverworldClockTime(), 24000L);
                         int hour = (int) ((ticks / 1000 + 6) % 24);
                         int minute = (int) ((ticks % 1000) * 60 / 1000);
                         String time = String.format(java.util.Locale.ROOT, "%02d:%02d", hour, minute);
