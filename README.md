@@ -40,3 +40,9 @@ Pushes to `main`, pull requests targeting `main`, and manual workflow dispatches
 ## Scope
 
 This project is focused on client-side performance, visual customization, HUD tools, and local quality-of-life features. It does not implement automated attacks, weapon-use automation, or bypasses for server protections.
+
+
+## Current client controls
+- Press **Right Shift** in-game to open the ClickGUI.
+- Click a module to toggle it; module states are saved in `config/jafaar-client.properties`.
+- The current build target is Minecraft 26.1.2 with Java 25.
