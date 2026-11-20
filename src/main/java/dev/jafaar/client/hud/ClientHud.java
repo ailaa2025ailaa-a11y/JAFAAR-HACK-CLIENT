@@ -28,6 +28,16 @@ public final class ClientHud {
                     Minecraft client = Minecraft.getInstance();
                     if (client.player == null) return;
 
+                    if (enabled("custom_crosshair") && client.screen == null && client.options.getCameraType().isFirstPerson()) {
+                        int cx = client.getWindow().getGuiScaledWidth() / 2;
+                        int cy = client.getWindow().getGuiScaledHeight() / 2;
+                        int color = 0xFFFFC857;
+                        graphics.fill(cx - 1, cy - 7, cx + 2, cy - 2, color);
+                        graphics.fill(cx - 1, cy + 2, cx + 2, cy + 7, color);
+                        graphics.fill(cx - 7, cy - 1, cx - 2, cy + 2, color);
+                        graphics.fill(cx + 2, cy - 1, cx + 7, cy + 2, color);
+                        graphics.fill(cx - 1, cy - 1, cx + 2, cy + 2, 0xFF202020);
+                    }
                     if (enabled("coordinates_hud")) {
                         String coords = String.format(java.util.Locale.ROOT, "XYZ  %.1f / %.1f / %.1f",
                                 client.player.getX(), client.player.getY(), client.player.getZ());
