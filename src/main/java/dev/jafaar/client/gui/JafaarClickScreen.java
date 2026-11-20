@@ -31,12 +31,9 @@ public final class JafaarClickScreen extends Screen {
         int bottom = Math.min(this.height - 32, top + modules.size() * 29 + 12);
         this.addRenderableWidget(Button.builder(Component.literal("HUD Editor"),
                 button -> this.minecraft.setScreen(new JafaarHudEditorScreen()))
-                .bounds(left + 12, bottom, 108, 20).build());
-        this.addRenderableWidget(Button.builder(Component.literal("Recorder"),
-                button -> this.minecraft.setScreen(new JafaarRecorderScreen()))
-                .bounds(left + 126, bottom, 108, 20).build());
+                .bounds(left + 20, bottom, 150, 20).build());
         this.addRenderableWidget(Button.builder(Component.literal("Done"), button -> this.onClose())
-                .bounds(left + 240, bottom, 108, 20).build());
+                .bounds(left + 190, bottom, 150, 20).build());
     }
 
     private static Component moduleLabel(ClientModule module) {
