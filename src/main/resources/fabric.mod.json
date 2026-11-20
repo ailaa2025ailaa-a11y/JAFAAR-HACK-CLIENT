@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "jafaarclient",
+  "version": "${version}",
+  "name": "JAFAAR HACK CLIENT",
+  "description": "A client-side Minecraft utility and performance mod with configurable modules.",
+  "authors": ["JAFAAR"],
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.jafaar.client.JafaarClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.5",
+    "minecraft": "~26.1.2",
+    "java": ">=25"
+  }
+}
