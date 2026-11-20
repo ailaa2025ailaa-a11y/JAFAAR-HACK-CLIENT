@@ -19,6 +19,8 @@ public final class ModuleManager {
         register(new ClientModule("coordinates_hud", "Coordinates HUD", ModuleCategory.HUD, true));
         register(new ClientModule("direction_hud", "Direction HUD", ModuleCategory.HUD, false));
         register(new ClientModule("keystrokes_hud", "Keystrokes HUD", ModuleCategory.HUD, false));
+        register(new ClientModule("vitals_hud", "Health and Food HUD", ModuleCategory.HUD, false));
+        register(new ClientModule("world_clock_hud", "World Clock HUD", ModuleCategory.HUD, false));
     }
     public Optional<ClientModule> get(String id) { return Optional.ofNullable(modules.get(id)); }
     public Collection<ClientModule> getModules() { return Collections.unmodifiableCollection(modules.values()); }
