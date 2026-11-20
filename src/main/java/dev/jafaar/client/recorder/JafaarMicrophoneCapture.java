@@ -50,7 +50,7 @@ public final class JafaarMicrophoneCapture {
             ALC11.alcCaptureStart(device);
             running.set(true);
             status = "MICROPHONE RECORDING";
-            captureThread = new Thread(() -> captureLoop(device, wavFile), "JAFAAR-Microphone-Capture");
+            final long openedDevice = device;\n            final Path openedFile = wavFile;\n            captureThread = new Thread(() -> captureLoop(openedDevice, openedFile), "JAFAAR-Microphone-Capture");
             captureThread.setDaemon(true);
             captureThread.start();
             return true;
