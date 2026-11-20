@@ -9,12 +9,9 @@ import dev.jafaar.client.module.ModuleManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
-import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.TitleScreen;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 
@@ -26,6 +23,7 @@ public final class JafaarClient implements ClientModInitializer {
     private static ModuleManager modules;
     private static ClientConfig config;
     private static KeyMapping clickGuiKey;
+    private static KeyMapping customMenuKey;
 
     @Override
     public void onInitializeClient() {
@@ -38,19 +36,18 @@ public final class JafaarClient implements ClientModInitializer {
                 Identifier.fromNamespaceAndPath(MOD_ID, "main"));
         clickGuiKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.jafaarclient.click_gui", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_RIGHT_SHIFT, category));
+        customMenuKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
+                "key.jafaarclient.custom_menu", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F8, category));
 
         ClientHud.register();
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (clickGuiKey.consumeClick()) {
                 if (client.player != null) client.setScreen(new JafaarClickScreen());
             }
-        });
-
-        ScreenEvents.AFTER_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
-            if (screen instanceof TitleScreen) {
-                screen.addRenderableWidget(Button.builder(Component.literal("JAFAAR MENU"),
-                        button -> client.setScreen(new JafaarMainMenuScreen(screen)))
-                        .bounds(scaledWidth - 112, 8, 104, 20).build());
+            while (customMenuKey.consumeClick()) {
+                if (client.screen instanceof TitleScreen) {
+                    client.setScreen(new JafaarMainMenuScreen(client.screen));
+                }
             }
         });
 
