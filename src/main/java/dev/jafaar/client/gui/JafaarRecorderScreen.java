@@ -1,6 +1,6 @@
 package dev.jafaar.client.gui;
 
-import dev.jafaar.client.recorder.JafaarRecorder;
+import dev.jafaar.client.recorder.JafaarRecorder;\nimport dev.jafaar.client.recorder.JafaarMicrophoneCapture;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
@@ -24,7 +24,7 @@ public final class JafaarRecorderScreen extends Screen {
             button.setMessage(qualityLabel());
         }).bounds(left + 18, top + 42, panelWidth - 36, 20).build());
 
-        this.addRenderableWidget(Button.builder(recordLabel(), button -> {
+        this.addRenderableWidget(Button.builder(micLabel(), button -> {\n            if (JafaarMicrophoneCapture.isRecording()) JafaarMicrophoneCapture.stop();\n            else JafaarMicrophoneCapture.start(net.minecraft.client.Minecraft.getInstance().gameDirectory.toPath().resolve("recordings"));\n            button.setMessage(micLabel());\n        }).bounds(left + 18, top + 76, panelWidth - 36, 20).build());\n\n        this.addRenderableWidget(Button.builder(recordLabel(), button -> {
             if (JafaarRecorder.isRecording()) {
                 JafaarRecorder.stop();
             } else {
@@ -32,7 +32,7 @@ public final class JafaarRecorderScreen extends Screen {
                 JafaarRecorder.start(heights[quality]);
             }
             button.setMessage(recordLabel());
-        }).bounds(left + 18, top + 76, panelWidth - 36, 24).build());
+        }).bounds(left + 18, top + 102, panelWidth - 36, 24).build());
 
         this.addRenderableWidget(Button.builder(Component.literal("Back"),
                 button -> this.onClose())
@@ -44,7 +44,7 @@ public final class JafaarRecorderScreen extends Screen {
         return Component.literal("Video quality: " + values[quality]);
     }
 
-    private Component recordLabel() {
+    private Component micLabel() {\n        return Component.literal(JafaarMicrophoneCapture.isRecording() ? "■  STOP MICROPHONE" : "●  START MICROPHONE");\n    }\n\n    private Component recordLabel() {
         return Component.literal(JafaarRecorder.isRecording() ? "■  STOP RECORDING" : "●  START RECORDING");
     }
 
@@ -65,10 +65,10 @@ public final class JafaarRecorderScreen extends Screen {
         graphics.centeredText(this.font, Component.literal("Video only — audio is Phase 3"),
                 this.width / 2, top + 111, 0xFFFFB36B);
         graphics.centeredText(this.font, Component.literal("Status: " + JafaarRecorder.status()),
-                this.width / 2, top + 126, 0xFFE4E8EF);
+                this.width / 2, top + 117, 0xFFE4E8EF);
         graphics.centeredText(this.font, Component.literal("Saved in: .minecraft/recordings"),
-                this.width / 2, top + 141, 0xFF9BA6B8);
+                this.width / 2, top + 166, 0xFF9BA6B8);
         graphics.centeredText(this.font, Component.literal("Dropped frames: " + JafaarRecorder.droppedFrames()),
-                this.width / 2, top + 154, 0xFF9BA6B8);
+                this.width / 2, top + 180, 0xFF9BA6B8);
     }
 }
