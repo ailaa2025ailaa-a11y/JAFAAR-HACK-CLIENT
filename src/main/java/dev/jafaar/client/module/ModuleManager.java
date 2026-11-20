@@ -13,6 +13,7 @@ public final class ModuleManager {
             throw new IllegalArgumentException("Duplicate module id: " + module.id());
     }
     public void registerDefaults() {
+        register(new ClientModule("custom_crosshair", "Custom Crosshair", ModuleCategory.VISUAL, true));
         register(new ClientModule("fps_hud", "FPS Counter", ModuleCategory.HUD, true));
         register(new ClientModule("memory_hud", "Memory Monitor", ModuleCategory.HUD, false));
         register(new ClientModule("coordinates_hud", "Coordinates HUD", ModuleCategory.HUD, true));
