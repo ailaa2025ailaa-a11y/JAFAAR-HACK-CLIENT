@@ -67,6 +67,23 @@ public final class ClientHud {
                         graphics.text(client.font, Component.literal("FACING  " + directions[index]),
                                 15, 102, 0xFFFFFFFF, true);
                     }
+                    if (enabled("vitals_hud")) {
+                        int health = Math.max(0, Math.round(client.player.getHealth()));
+                        int maxHealth = Math.max(1, Math.round(client.player.getMaxHealth()));
+                        int food = client.player.getFoodData().getFoodLevel();
+                        panel(graphics, 8, 121, 150, 23);
+                        graphics.text(client.font, Component.literal("HP  " + health + "/" + maxHealth + "    FOOD  " + food),
+                                15, 129, health <= 6 ? 0xFFFF7777 : 0xFFFFFFFF, true);
+                    }
+                    if (enabled("world_clock_hud") && client.level != null) {
+                        long ticks = Math.floorMod(client.level.getDayTime(), 24000L);
+                        int hour = (int) ((ticks / 1000 + 6) % 24);
+                        int minute = (int) ((ticks % 1000) * 60 / 1000);
+                        String time = String.format(java.util.Locale.ROOT, "%02d:%02d", hour, minute);
+                        panel(graphics, 8, 148, 100, 23);
+                        graphics.text(client.font, Component.literal("WORLD  " + time),
+                                15, 156, 0xFFFFFFFF, true);
+                    }
                     if (enabled("keystrokes_hud")) {
                         int x = client.getWindow().getGuiScaledWidth() - 82;
                         int y = client.getWindow().getGuiScaledHeight() - 78;
