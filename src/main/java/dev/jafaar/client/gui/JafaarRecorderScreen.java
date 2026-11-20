@@ -17,7 +17,7 @@ public final class JafaarRecorderScreen extends Screen {
     protected void init() {
         int panelWidth = 310;
         int left = (this.width - panelWidth) / 2;
-        int top = Math.max(35, (this.height - 205) / 2);
+        int top = Math.max(35, (this.height - 230) / 2);
 
         this.addRenderableWidget(Button.builder(qualityLabel(), button -> {
             quality = (quality + 1) % 3;
@@ -36,7 +36,7 @@ public final class JafaarRecorderScreen extends Screen {
 
         this.addRenderableWidget(Button.builder(Component.literal("Back"),
                 button -> this.onClose())
-                .bounds(left + 18, top + 169, panelWidth - 36, 20).build());
+                .bounds(left + 18, top + 198, panelWidth - 36, 20).build());
     }
 
     private Component qualityLabel() {
@@ -54,9 +54,9 @@ public final class JafaarRecorderScreen extends Screen {
         int left = (this.width - panelWidth) / 2;
         int top = Math.max(35, (this.height - 205) / 2);
         graphics.fill(0, 0, this.width, this.height, 0xB8050910);
-        graphics.fill(left, top, left + panelWidth, top + 205, 0xF0121825);
+        graphics.fill(left, top, left + panelWidth, top + 230, 0xF0121825);
         graphics.fill(left, top, left + panelWidth, top + 3, 0xFFFF4545);
-        graphics.outline(left, top, panelWidth, 205, 0xFF8C3540);
+        graphics.outline(left, top, panelWidth, 230, 0xFF8C3540);
         super.extractRenderState(graphics, mouseX, mouseY, delta);
         graphics.centeredText(this.font, Component.literal("JAFAAR RECORDER"),
                 this.width / 2, top + 13, 0xFFFF6666);
