@@ -3,6 +3,7 @@ package dev.jafaar.client;
 import com.mojang.blaze3d.platform.InputConstants;
 import dev.jafaar.client.config.ClientConfig;
 import dev.jafaar.client.gui.JafaarClickScreen;
+import dev.jafaar.client.hud.ClientHud;
 import dev.jafaar.client.module.ModuleManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -37,6 +38,8 @@ public final class JafaarClient implements ClientModInitializer {
                 InputConstants.KEY_RIGHT_SHIFT,
                 category
         ));
+
+        ClientHud.register();
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (clickGuiKey.consumeClick()) {
