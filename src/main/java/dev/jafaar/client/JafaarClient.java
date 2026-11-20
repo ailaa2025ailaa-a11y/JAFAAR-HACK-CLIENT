@@ -6,7 +6,7 @@ import dev.jafaar.client.gui.JafaarClickScreen;
 import dev.jafaar.client.gui.JafaarMainMenuScreen;
 import dev.jafaar.client.hud.ClientHud;
 import dev.jafaar.client.module.ModuleManager;
-import dev.jafaar.client.recorder.JafaarRecorder;
+import dev.jafaar.client.recorder.JafaarRecorder;\nimport dev.jafaar.client.recorder.JafaarMicrophoneCapture;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
@@ -41,7 +41,7 @@ public final class JafaarClient implements ClientModInitializer {
                 "key.jafaarclient.custom_menu", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F8, category));
 
         ClientHud.register();
-        Runtime.getRuntime().addShutdownHook(new Thread(JafaarRecorder::stop, "JAFAAR-Recorder-Shutdown"));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {\n            JafaarRecorder.stop();\n            JafaarMicrophoneCapture.stop();\n        }, "JAFAAR-Recorder-Shutdown"));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             JafaarRecorder.captureFrame(client);
             while (clickGuiKey.consumeClick()) {
