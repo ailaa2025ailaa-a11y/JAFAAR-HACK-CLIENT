@@ -36,9 +36,26 @@ public final class ClientHud {
                                 coordinatesY + 9, 0xFFFFFFFF, true);
                     }
                     if (enabled("fps_hud")) {
-                        panel(graphics, 8, 40, 92, 23);
-                        graphics.text(client.font, Component.literal("FPS  " + client.getFps()),
-                                15, 48, 0xFFFFFFFF, true);
+                        int fps = client.getFps();
+                        int color = fps >= 60 ? 0xFF73E6A1 : fps >= 30 ? 0xFFFFD36A : 0xFFFF7777;
+                        panel(graphics, 8, 40, 100, 23);
+                        graphics.text(client.font, Component.literal("FPS  " + fps),
+                                15, 48, color, true);
+                    }
+                    if (enabled("memory_hud")) {
+                        Runtime runtime = Runtime.getRuntime();
+                        long used = (runtime.totalMemory() - runtime.freeMemory()) / 1048576L;
+                        long max = runtime.maxMemory() / 1048576L;
+                        panel(graphics, 8, 67, 150, 23);
+                        graphics.text(client.font, Component.literal("MEM  " + used + " / " + max + " MB"),
+                                15, 75, 0xFFFFFFFF, true);
+                    }
+                    if (enabled("direction_hud")) {
+                        String[] directions = {"S", "W", "N", "E"};
+                        int index = ((int) Math.floor(client.player.getYRot() / 90.0f + 0.5f) & 3);
+                        panel(graphics, 8, 94, 92, 23);
+                        graphics.text(client.font, Component.literal("FACING  " + directions[index]),
+                                15, 102, 0xFFFFFFFF, true);
                     }
                     if (enabled("keystrokes_hud")) {
                         int x = client.getWindow().getGuiScaledWidth() - 82;
