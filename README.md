@@ -1,48 +1,25 @@
-# JAFAAR CLIENT
+# JAFAAR HACK CLIENT
 
-A client-side Fabric mod foundation for Minecraft 26.1.2.
+A client-side Fabric utility client for **Minecraft Java 1.21.11**.
 
-## Current project foundation
+## Current modules
 
-- Fabric Loader client entrypoint
-- Java 25 toolchain
-- Module registry with categories
-- Persistent per-module configuration in `config/jafaar-client.properties`
-- GitHub Actions build workflow (uploads the JAR as an artifact)
+- **Fullbright** — client gamma toggle.
+- **Auto Sprint** — sprint while moving forward.
+- **Zoom** — hold the configured zoom key (default C).
+- **Coordinates HUD** — live XYZ display.
+- **FPS HUD** — live frame-rate display.
+- **Keystrokes HUD** — W/A/S/D and jump key display.
+- **ClickGUI** — press Right Shift to open the module panel.
 
-## Current modules registered
-
-- FPS Profile (foundation)
-- Reduced Visual Effects (foundation)
-- Fullbright (toggle registration)
-- Coordinates HUD (toggle registration)
-- Keystrokes HUD (toggle registration)
-- CPS Counter (toggle registration)
-- Zoom (toggle registration)
-- Toggle Sprint (toggle registration)
-
-The module registry and config persistence are implemented. The listed toggles are currently foundations; their in-game behavior and the ClickGUI/HUD rendering still need implementation.
+This first clean rebuild establishes the 1.21.11 client foundation. More visual and singleplayer-only utilities can be added in later commits. It does not include combat automation or anti-cheat bypasses.
 
 ## Build
 
-Requirements: JDK 25 and Gradle 9.6 or newer.
+Requires JDK 21 and Gradle 9.2.1 or compatible.
 
 ```bash
 gradle build
 ```
 
-The JAR is created in `build/libs/`.
-
-## GitHub Actions
-
-Pushes to `main`, pull requests targeting `main`, and manual workflow dispatches run the build workflow. Download the `JAFAAR-HACK-CLIENT` artifact from the successful workflow run.
-
-## Scope
-
-This project is focused on client-side performance, visual customization, HUD tools, and local quality-of-life features. It does not implement automated attacks, weapon-use automation, or bypasses for server protections.
-
-
-## Current client controls
-- Press **Right Shift** in-game to open the ClickGUI.
-- Click a module to toggle it; module states are saved in `config/jafaar-client.properties`.
-- The current build target is Minecraft 26.1.2 with Java 25.
+The distributable JAR is generated in `build/libs/`.
